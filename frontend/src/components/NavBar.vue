@@ -4,7 +4,7 @@
     <ul>
       <li><router-link to="/PaginaDashboard"><font-awesome-icon icon="tachometer-alt" /> Dashboard</router-link></li>
       <li><router-link to="/RegistrarCliente"><font-awesome-icon icon="user-plus" /> Registrar Cliente</router-link></li>
-      <li><router-link to="/registrar-productos"><font-awesome-icon icon="plus-circle" /> Registrar Productos</router-link></li>
+      <li><router-link to="/RegistrarProducto"><font-awesome-icon icon="plus-circle" /> Registrar Productos</router-link></li>
       <li><router-link to="/nueva-venta"><font-awesome-icon icon="shopping-cart" /> Nueva Venta</router-link></li>
       <li><router-link to="/administrar-descuentos"><font-awesome-icon icon="percent" /> Administrar Descuentos</router-link></li>
       <li><router-link to="/inventario"><font-awesome-icon icon="clipboard-list" /> Inventario</router-link></li>

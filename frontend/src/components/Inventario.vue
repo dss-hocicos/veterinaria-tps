@@ -30,6 +30,7 @@
       </table>
     </div>
     <!-- Modal -->
+    <!-- Modal -->
 <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -41,18 +42,37 @@
         <form>
           <div class="mb-3">
             <label for="productName" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="productName" v-model="productoEditado.nombre">
+            <input type="text" class="form-control" id="productName" v-model="productoSeleccionado.nombre">
+          </div>
+          <div>
+            <label for="productPrice" class="form-label">Precio</label>
+            <input type="number" class="form-control" id="productPrice" v-model="productoSeleccionado.precio">
+          </div>
+          <div>
+            <label for="productDescription" class="form-label">Descripción</label>
+            <textarea class="form-control" id="productDescription" rows="3" v-model="productoSeleccionado.descripcion"></textarea>
+          </div>
+          <div>
+            <label for="productUnits" class="form-label">Unidades</label>
+            <input type="number" class="form-control" id="productUnits" v-model="productoSeleccionado.Unidades">
+          </div>
+          <div>
+            <label for="productProvider" class="form-label">Proveedor</label>
+            <select class="form-select" id="productProvider" v-model="productoSeleccionado.proveedores_id_proveedor">
+              <option v-for="proveedor in proveedores" :key="proveedor.id_proveedor" :value="proveedor.id_proveedor">{{ proveedor.nombre }}</option>
+            </select>
           </div>
           <!-- Agrega aquí los demás campos -->
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" @click="updateProduct(productoEditado)">Guardar cambios</button>
+        <button type="button" class="btn btn-primary" @click="updateProduct(productoSeleccionado)">Guardar cambios</button>
       </div>
     </div>
   </div>
 </div>
+
   </template>
   
   <script>
@@ -65,6 +85,7 @@
     data() {
       return {
         productos: [],
+        proveedores: [],
         searchQuery: '',
         productoEditado: {
         nombre: '',
@@ -77,14 +98,12 @@
       };
     },
     computed: {
-        filteredProducts() {
-    if (this.productos && this.productos.length > 0) {
-      return this.productos.filter(producto =>
-        producto.nombre.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-    }
-    return [];
-  },
+      filteredProducts() {
+  return this.productos.filter(producto =>
+    producto.nombre && producto.nombre.toLowerCase().includes(this.searchQuery.toLowerCase())
+  );
+},
+
     },
     methods: {
         async deleteProduct(producto) {
@@ -102,41 +121,56 @@
     }
   },
   showEditModal(producto) {
-      if (producto) {
-        this.productoEditado = { ...producto };
-        var myModal = new Modal(document.getElementById('editProductModal'), {focus: true})
-        myModal.show();
-      }
-    },
+    if (producto) {
+      this.productoSeleccionado = { ...producto };
+      var myModal = new Modal(document.getElementById('editProductModal'), {focus: true})
+      myModal.show();
+    }
+  },
   async updateProduct(producto) {
     try {
-      const response = await axios.put(`http://localhost:3000/productos/${producto.id_producto}`, producto);
+        const response = await axios.put(`http://localhost:3000/productos/${producto.id_producto}`, producto);
 
-      // Actualizamos la lista de productos con los datos actualizados
-      const index = this.productos.findIndex(p => p.id_producto === producto.id_producto);
-      this.productos.splice(index, 1, response.data);
+        // Actualizamos la lista de productos con los datos actualizados
+        const index = this.productos.findIndex(p => p.id_producto === producto.id_producto);
+        this.productos.splice(index, 1, response.data);
 
-      Swal.fire({
-        title: '¡Actualizado!',
-        text: 'El producto ha sido actualizado con éxito.',
-        icon: 'success',
-        confirmButtonText: 'OK'
-      });
+        Swal.fire({
+            title: '¡Actualizado!',
+            text: 'El producto ha sido actualizado con éxito.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            // Recarga la página después de que el usuario presione "OK" en el SweetAlert.
+            location.reload();
+        });
     } catch (error) {
-      console.error(error);
+        console.error(error);
 
-      Swal.fire({
-        title: 'Error!',
-        text: 'Hubo un error al actualizar el producto.',
-        icon: 'error',
-        confirmButtonText: 'OK'
-      });
+        Swal.fire({
+            title: 'Error!',
+            text: 'Hubo un error al actualizar el producto.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
     }
+},
+fetchProveedores() {
+    axios.get('http://localhost:3000/proveedores')
+      .then(response => {
+        this.proveedores = response.data;
+      })
+      .catch(error => {
+        console.error(error);
+      });
   },
     },
     components: {
       NavBar,
     },
+    mounted() {
+  this.fetchProveedores();
+},
     async created() {
       try {
         const response = await axios.get('http://localhost:3000/productos');

@@ -5,6 +5,8 @@ import { showVendedor } from "../controllers/vendedor.js";
 
 import { showProductos, showProductoById, createProducto, updateProducto, deleteProducto } from "../controllers/producto.js";
 
+import {showProveedores, showProveedorById, createProveedor, updateProveedor, deleteProveedor} from "../controllers/proveedor.js"
+ 
 const router = express.Router();
 
 
@@ -24,5 +26,12 @@ router.get('/productos/:id', showProductoById);
 router.post('/productos', createProducto);
 router.put('/productos/:id', updateProducto);
 router.delete('/productos/:id', deleteProducto);
+
+//rutas proveedor
+router.get('/proveedores', showProveedores);
+router.get('/proveedores/:id', showProveedorById);
+router.post('/proveedores', createProveedor);
+router.put('proveedores/:id', updateProveedor);
+router.delete('proveedores/:id', deleteProveedor);
 
 export default router;

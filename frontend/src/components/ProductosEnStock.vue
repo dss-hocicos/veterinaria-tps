@@ -23,7 +23,7 @@
     },
     methods: {
       async getProductosEnStock() {
-        const response = await axios.get("http://localhost:5000/api/productos");
+        const response = await axios.get("http://localhost:3000/productos");
         this.productosEnStock = response.data.length;
       },
     },

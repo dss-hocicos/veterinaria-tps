@@ -23,12 +23,12 @@
           <label for="unidades">Unidades</label>
           <input type="number" class="form-control" id="Unidades" v-model="producto.Unidades">
         </div>
-  
         <div class="form-group">
-          <label for="id_proveedor">Proveedor</label>
-          <input type="number" class="form-control" id="proveedores_id_proveedor" v-model="producto.proveedores_id_proveedor">
-        </div>
-  
+        <label for="id_proveedor">Proveedor</label>
+        <select class="form-control" id="proveedores_id_proveedor" v-model="producto.proveedores_id_proveedor">
+          <option v-for="proveedor in proveedores" :key="proveedor.id_proveedor" :value="proveedor.id_proveedor">{{ proveedor.nombre }}</option>
+        </select>
+      </div>
         <button type="submit" class="btn btn-primary">Registrar</button>
       </form>
     </div>
@@ -41,6 +41,7 @@
     name: 'RegistrarProducto',
     data() {
       return {
+        proveedores: [],
         producto: {
           nombre: '',
           precio: '',
@@ -51,6 +52,14 @@
       };
     },
     methods: {
+      async fetchProveedores() {
+      try {
+        const response = await axios.get('http://localhost:3000/proveedores');
+        this.proveedores = response.data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
         async submitForm() {
         try {
           const response = await axios.post('http://localhost:3000/productos', this.producto);
@@ -60,6 +69,9 @@
           console.error(error);
         }
       }},
+      mounted() {
+    this.fetchProveedores();
+  },
     components: {
       NavBar,
     },

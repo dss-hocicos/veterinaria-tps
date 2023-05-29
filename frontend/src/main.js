@@ -6,7 +6,7 @@ import PaginaDashboard from './components/PaginaDashboard.vue';
 import RegistrarProducto from './components/RegistrarProducto.vue';
 import Inventario from './components/Inventario.vue';
 import RegistrarCliente from './components/RegistrarCliente.vue';
-
+import ProveedorRegistro from './components/ProveedorRegistro.vue';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTachometerAlt, faUserPlus, faPlusCircle, faShoppingCart, faPercent, faClipboardList, faChartLine, faTruckLoading } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -40,6 +40,11 @@ const routes = [
         name: 'Inventario',
         path: '/Inventario',
         component: Inventario
+      },
+      {
+        name: 'Proveedores',
+        path: '/Proveedores',
+        component: ProveedorRegistro
       }
       ]
 library.add(faTachometerAlt, faUserPlus, faPlusCircle, faShoppingCart, faPercent, faClipboardList, faChartLine, faTruckLoading)

@@ -9,7 +9,7 @@
   </template>
   
   <script>
-  import axios from "axios";
+  //import axios from "axios";
   
   export default {
     name: "TotalVentas",
@@ -17,17 +17,17 @@
       return {
         totalVentas: 0,
       };
-    },
-    mounted() {
-      this.getTotalVentas();
-    },
-    methods: {
-      async getTotalVentas() {
-        const response = await axios.get("http://localhost:3000/ventas");
-        this.totalVentas = response.data.length;
-      },
-    },
-  };
+    },}
+   // mounted() {
+    //  this.getTotalVentas();
+    //},
+    //methods: {
+     // async getTotalVentas() {
+      //  const response = await axios.get("http://localhost:3000/ventas");
+      //  this.totalVentas = response.data.length;
+     // },
+   // },
+ // };
   </script>
   
   <style scoped>

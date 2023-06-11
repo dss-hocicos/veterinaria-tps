@@ -7,10 +7,16 @@ import RegistrarProducto from './components/RegistrarProducto.vue';
 import Inventario from './components/Inventario.vue';
 import RegistrarCliente from './components/RegistrarCliente.vue';
 import ProveedorRegistro from './components/ProveedorRegistro.vue';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTachometerAlt, faUserPlus, faPlusCircle, faShoppingCart, faPercent, faClipboardList, faChartLine, faTruckLoading } from '@fortawesome/free-solid-svg-icons'
+import Descuentospagina from './components/Descuentospagina.vue';
+import Ventaspagina from './components/Ventaspagina.vue';
+import Facturaspagina from './components/Facturaspagina.vue'
+import Analisispagina from './components/Analisispagina.vue'
+import { library, dom } from '@fortawesome/fontawesome-svg-core'
+//import { faTachometerAlt, faUserPlus, faPlusCircle, faShoppingCart, faPercent, faClipboardList, faChartLine, faTruckLoading } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '@fortawesome/fontawesome-free/css/all.css'
 
 import VueSweetalert2 from 'vue-sweetalert2';
@@ -45,9 +51,31 @@ const routes = [
         name: 'Proveedores',
         path: '/Proveedores',
         component: ProveedorRegistro
+      },
+      {
+        name: 'descuentos',
+        path: '/Descuentos',
+        component: Descuentospagina
+      },
+      {
+        name:'ventas',
+        path: '/Ventas',
+        component: Ventaspagina
+      },
+      {
+        name:'facturas',
+        path:'/Facturas',
+        component: Facturaspagina
+      },
+      {
+        name:'analisis',
+        path:'/Analisis',
+        component: Analisispagina
       }
       ]
-library.add(faTachometerAlt, faUserPlus, faPlusCircle, faShoppingCart, faPercent, faClipboardList, faChartLine, faTruckLoading)
+library.add(fas);
+dom.watch();
+
 const router = createRouter({
   history: createWebHistory(),
   routes

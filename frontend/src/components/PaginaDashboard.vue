@@ -10,7 +10,7 @@
       
       </div>
       <h2>Clientes</h2>
-      <div class="container-fluid mt-3 custom-margin">
+      <div class="table-container mt-3 custom-margin">
       <div class="table-responsive">
       <table class="table table-hover">
         <thead class="thead-dark">
@@ -81,6 +81,9 @@
 .custom-margin {
   margin-left: 300px;
 }
-
+.table-container{
+  max-width:80%;
+  margin:0 auto;
+}
   </style>
   

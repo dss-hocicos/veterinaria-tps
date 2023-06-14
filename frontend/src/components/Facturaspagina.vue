@@ -95,7 +95,7 @@ export default {
       doc.save('factura.pdf');
 
       alert('Factura generada con éxito');
-      this.$router.push({ name: 'facturas' });
+      this.$router.push({ path: '/Ventas' });
         })
         .catch(error => {
           console.error(error);

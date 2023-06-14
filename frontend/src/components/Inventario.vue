@@ -5,29 +5,32 @@
       
       <input type="search" class="form-control mb-4" v-model="searchQuery" placeholder="Buscar producto...">
   
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Código</th>
-            <th>Precio</th>
-            <th>Unidades Disponibles</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="producto in filteredProducts" :key="producto.id">
-            <td>{{ producto.nombre }}</td>
-            <td>{{ producto.id_producto }}</td>
-            <td>{{ producto.precio }}</td>
-            <td>{{ producto.Unidades }}</td>
-            <td>
-              <button class="btn btn-primary mr-2" @click="showEditModal(producto)">Actualizar</button>
-              <button class="btn btn-danger" @click="deleteProduct(producto)">Eliminar</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <table class="table bg-light p-4 rounded shadow">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Código</th>
+      <th>Descripción</th>
+      <th>Precio</th>
+      <th>Unidades Disponibles</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="producto in filteredProducts" :key="producto.id">
+      <td>{{ producto.nombre }}</td>
+      <td>{{ producto.id_producto }}</td>
+      <td>{{ producto.descripcion }}</td>
+      <td>{{ producto.precio }}</td>
+      <td>{{ producto.Unidades }}</td>
+      <td>
+        <button class="btn btn-primary mr-2" @click="showEditModal(producto)">Actualizar</button>
+        <button class="btn btn-danger" @click="deleteProduct(producto)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
     </div>
     <!-- Modal -->
     <!-- Modal -->

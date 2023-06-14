@@ -5,7 +5,7 @@
 
         <button class="btn btn-primary mb-4" @click="showAddModal">Agregar Proveedor</button>
 
-        <table class="table">
+        <table class="table bg-light p-4 rounded shadow">
             <thead>
                 <tr>
                     <th>ID</th>

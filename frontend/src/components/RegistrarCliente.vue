@@ -59,7 +59,7 @@
         try {
           const response = await axios.post('http://localhost:3000/clientes', this.cliente);
           console.log(response.data);
-          this.$swal('Producto registrado!', 'El cliente ha sido registrado con éxito!', 'success');
+          this.$swal('Cliente registrado!', 'El cliente ha sido registrado con éxito!', 'success');
         } catch (error) {
           console.error(error);
         }

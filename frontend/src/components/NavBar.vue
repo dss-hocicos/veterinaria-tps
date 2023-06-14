@@ -11,14 +11,14 @@
       </div>
       <div class="offcanvas-body">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><router-link to="/PaginaDashboard"><font-awesome-icon icon="tachometer-alt" /> Dashboard</router-link></li>
-          <li class="list-group-item"><router-link to="/RegistrarCliente"><font-awesome-icon icon="user-plus" /> Registrar Cliente</router-link></li>
-          <li class="list-group-item"><router-link to="/RegistrarProducto"><font-awesome-icon icon="plus-circle" /> Registrar Productos</router-link></li>
-          <li class="list-group-item"><router-link to="/Ventas"><font-awesome-icon icon="shopping-cart" /> Nueva Venta</router-link></li>
-          <li class="list-group-item"><router-link to="/Descuentos"><font-awesome-icon icon="percent" /> Administrar Descuentos</router-link></li>
-          <li class="list-group-item"><router-link to="/inventario"><font-awesome-icon icon="clipboard-list" /> Inventario</router-link></li>
-          <li class="list-group-item"><router-link to="/Analisis"><font-awesome-icon icon="chart-line" /> Análisis de Ventas</router-link></li>
-          <li class="list-group-item"><router-link to="/proveedores"><font-awesome-icon icon="truck-loading" /> Proveedores</router-link></li>
+          <li class="list-group-item"><router-link to="/PaginaDashboard" class="menu-button"><font-awesome-icon icon="tachometer-alt" /> Dashboard</router-link></li>
+          <li class="list-group-item"><router-link to="/RegistrarCliente" class="menu-button"><font-awesome-icon icon="user-plus" /> Registrar Cliente</router-link></li>
+          <li class="list-group-item"><router-link to="/RegistrarProducto" class="menu-button"><font-awesome-icon icon="plus-circle" /> Registrar Productos</router-link></li>
+          <li class="list-group-item"><router-link to="/Ventas" class="menu-button"><font-awesome-icon icon="shopping-cart" /> Nueva Venta</router-link></li>
+          <li class="list-group-item"><router-link to="/Descuentos" class="menu-button"><font-awesome-icon icon="percent" /> Administrar Descuentos</router-link></li>
+          <li class="list-group-item"><router-link to="/inventario" class="menu-button"><font-awesome-icon icon="clipboard-list" /> Inventario</router-link></li>
+          <li class="list-group-item"><router-link to="/Analisis" class="menu-button"><font-awesome-icon icon="chart-line" /> Análisis de Ventas</router-link></li>
+          <li class="list-group-item"><router-link to="/proveedores" class="menu-button"><font-awesome-icon icon="truck-loading" /> Proveedores</router-link></li>
         </ul>
       </div>
     </div>

@@ -9,7 +9,7 @@
         <ProductosEnStock />
       
       </div>
-      <h2>Clientes</h2>
+      <h2 style="margin-left:190px">Clientes</h2>
       <div class="table-container mt-3 custom-margin">
       <div class="table-responsive">
       <table class="table table-hover">

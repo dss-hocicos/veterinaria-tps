@@ -11,6 +11,7 @@ import Descuentospagina from './components/Descuentospagina.vue';
 import Ventaspagina from './components/Ventaspagina.vue';
 import Facturaspagina from './components/Facturaspagina.vue'
 import Analisispagina from './components/Analisispagina.vue'
+import VentasTabla from './components/VentasTabla.vue'
 import { library, dom } from '@fortawesome/fontawesome-svg-core'
 //import { faTachometerAlt, faUserPlus, faPlusCircle, faShoppingCart, faPercent, faClipboardList, faChartLine, faTruckLoading } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -71,6 +72,11 @@ const routes = [
         name:'analisis',
         path:'/Analisis',
         component: Analisispagina
+      },
+      {
+        name:'tablaven',
+        path:'/tablas',
+        component: VentasTabla
       }
       ]
 library.add(fas);

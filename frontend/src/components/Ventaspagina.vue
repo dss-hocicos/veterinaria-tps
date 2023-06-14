@@ -2,7 +2,10 @@
   <div style="height: 100vh; overflow-y: auto;"> 
   <NavBar/>
   <div class="container">
-    <h1 class="my-4 text-center">Registro de Ventas</h1>
+    <div class="d-flex justify-content-between align-items-center my-4">
+        <h1>Registro de Ventas</h1>
+        <button class="btn btn-secondary" @click="goToVentas">Ver lista de ventas</button>
+      </div>
 
     <form @submit.prevent="submitVenta" class="bg-light p-4 rounded shadow">
         <!-- Fecha de venta -->
@@ -12,30 +15,34 @@
       </div>
       <!-- Seleccionar cliente -->
       <div class="mb-3">
-        <label for="cliente" class="form-label">Cliente:</label>
-        <select class="form-select" id="cliente" v-model="newVenta.Cliente_id_cliente">
-          <option v-for="cliente in clientes" :key="cliente.id_cliente" :value="cliente.id_cliente">
-            {{ cliente.nombre }} {{ cliente.apellido }}
-          </option>
-        </select>
-      </div> 
+  <label for="cliente" class="form-label">Cliente:</label>
+  <select class="form-select" id="cliente" v-model="newVenta.Cliente_id_cliente">
+    <option value="">-- Por favor seleccione --</option>
+    <option v-for="cliente in clientes" :key="cliente.id_cliente" :value="cliente.id_cliente">
+      {{ cliente.nombre }} {{ cliente.apellido }}
+    </option>
+  </select>
+</div>  
 
       <!-- Seleccionar vendedor -->
       <div class="mb-3">
-        <label for="vendedor" class="form-label">Vendedor:</label>
-        <select class="form-select" id="vendedor" v-model="newVenta.vendedor_id_vendedor">
-          <option v-for="vendedor in vendedores" :key="vendedor.id_vendedor" :value="vendedor.id_vendedor">
-            {{ vendedor.usuario }}
-          </option>
-        </select>
-      </div>
-      <div class="mb-3">
-  <label for="descuento" class="form-label">Descuento:</label>
-  <select class="form-select" id="descuento" v-model="newVenta.descuentos_id_descuento">
-    <option v-for="descuento in descuentos" :key="descuento.id_descuento" :value="descuento.id_descuento">
-      {{ getProductName(descuento.productos_id_producto) }} - {{ descuento.nombre }} - {{ descuento.porcentaje }}%
+  <label for="vendedor" class="form-label">Vendedor:</label>
+  <select class="form-select" id="vendedor" v-model="newVenta.vendedor_id_vendedor">
+    <option value="">-- Por favor seleccione --</option>
+    <option v-for="vendedor in vendedores" :key="vendedor.id_vendedor" :value="vendedor.id_vendedor">
+      {{ vendedor.usuario }}
     </option>
   </select>
+</div>
+
+<div class="mb-3">
+<label for="descuento" class="form-label">Descuento:</label>
+<select class="form-select" id="descuento" v-model="newVenta.descuentos_id_descuento">
+  <option value="">-- Por favor seleccione --</option>
+  <option v-for="descuento in descuentos" :key="descuento.id_descuento" :value="descuento.id_descuento">
+    {{ getProductName(descuento.productos_id_producto) }} - {{ descuento.nombre }} - {{ descuento.porcentaje }}%
+  </option>
+</select>
 </div>
 
       <!-- Método de pago -->
@@ -86,14 +93,15 @@
 </table>
 
       <!-- Agregar producto a la venta -->
-      <div class="mb-3">
-        <label for="producto" class="form-label">Producto:</label>
-        <select class="form-select" id="producto" v-model="productoSeleccionado">
-          <option v-for="producto in productos" :key="producto.id_producto" :value="producto.id_producto">
-            {{ producto.nombre }}
-          </option>
-        </select>
-      </div>
+<div class="mb-3">
+  <label for="producto" class="form-label">Producto:</label>
+  <select class="form-select" id="producto" v-model="productoSeleccionado">
+    <option value="">-- Por favor seleccione --</option>
+    <option v-for="producto in productos" :key="producto.id_producto" :value="producto.id_producto">
+      {{ producto.nombre }}
+    </option>
+  </select>
+</div>
       <div class="mb-3">
         <label for="cantidadProducto" class="form-label">Cantidad:</label>
         <input type="number" class="form-control" id="cantidadProducto" v-model="cantidadProducto" min="1">
@@ -120,10 +128,11 @@
           fecha: '',
           total: 0,
           MetodoPago: '',
-          productos_id_producto: 0,
-          Cliente_id_cliente: 0,
-          vendedor_id_vendedor: 0,
-          descuentos_id_descuento: 0,
+          productos_id_producto: '',
+          Cliente_id_cliente: '',  // valor inicial vacío
+        vendedor_id_vendedor: '',  // valor inicial vacío
+        descuentos_id_descuento: '',  // valor inicial vacío
+       
         },
         productos: [],
         clientes: [],
@@ -163,6 +172,9 @@
       console.error(error);
     }
   },
+  goToVentas() {
+      this.$router.push('/tablas');  // Asume que el path a tu vista de lista de ventas es '/ventas'
+    },
   async loadDescuentos() {
     try {
       const response = await axios.get('http://localhost:3000/descuentos');
@@ -236,7 +248,7 @@
         subtotal: item.subtotal,
 
       };
-      //await this.updateInventory(item.id, item.cantidad);
+      await this.updateInventory(item.id, item.cantidad);
       await axios.post('http://localhost:3000/venta_producto', ventaProducto);
     }
 

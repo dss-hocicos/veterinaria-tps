@@ -84,15 +84,14 @@ export default {
       
       doc.setFontSize(12);
       doc.text('Veterinaria', doc.internal.pageSize.getWidth() / 2, 30, { align: 'center' });
-      doc.text(`Razón Social: ${nuevaFactura.razon_social}`, 10, 100);
-      doc.text(`CI: ${nuevaFactura.ci}`, 10, 90);
-      doc.text(`Venta: ${nuevaFactura.Ventas_id_venta}`, 10, 120);
-      doc.text(`Código de Control: ${nuevaFactura.codigo_control}`, 10, 70);
-      doc.text('-------------------------------------------------------------------------', doc.internal.pageSize.getWidth() / 2, 35, { align: 'center' });
+      doc.text('-----------------------', doc.internal.pageSize.getWidth() / 2, 35, { align: 'center' });
       doc.text(`Fecha: ${nuevaFactura.fecha}`, 10, 50);
       doc.text(`Monto: ${nuevaFactura.monto}`, 10, 60);
-      doc.text('---------', doc.internal.pageSize.getWidth() / 2, 35, { align: 'center' });
+      doc.text(`Código de Control: ${nuevaFactura.codigo_control}`, 10, 70);
       doc.text(`Total: ${nuevaFactura.total}`, 10, 80);
+      doc.text(`CI: ${nuevaFactura.ci}`, 10, 90);
+      doc.text(`Razón Social: ${nuevaFactura.razon_social}`, 10, 100);
+      doc.text(`Venta: ${nuevaFactura.Ventas_id_venta}`, 10, 120);
       doc.save('factura.pdf');
 
       alert('Factura generada con éxito');

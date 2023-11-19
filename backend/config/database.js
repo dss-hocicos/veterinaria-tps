@@ -4,8 +4,9 @@ import mysql from "mysql2";
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '',
-  database: 'veterinaria_sis'
+  password: '123456',
+  database: 'veterinaria_sis2',
+  port: 3308
 });
   
 export default db;

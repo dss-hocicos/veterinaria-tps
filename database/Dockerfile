@@ -14,3 +14,4 @@ COPY ./2_veterinaria_sis2_datamart.sql /docker-entrypoint-initdb.d/
 COPY ./3_triggers.sql /docker-entrypoint-initdb.d/
 COPY ./4_etl.sql /docker-entrypoint-initdb.d/
 COPY ./5_mockdata.sql /docker-entrypoint-initdb.d/
+COPY ./6_correcciones.sql /docker-entrypoint-initdb.d/

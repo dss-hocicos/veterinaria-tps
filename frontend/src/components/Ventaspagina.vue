@@ -147,13 +147,14 @@
   async loadProductos() {
     try {
       const response = await axios.get('http://localhost:3000/productos');
-      this.productos = response.data;
+      console.log(response.data);
+      this.producto = response.data;
     } catch (error) {
       console.error(error);
     }
   },
   getProductName(productoId) {
-    const producto = this.productos.find(p => p.id_producto === productoId);
+    const producto = this.producto.find(p => p.id_producto === productoId);
     return producto ? producto.nombre : 'Producto no encontrado';
   },
   async loadClientes() {

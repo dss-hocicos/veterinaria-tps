@@ -46,7 +46,7 @@
               <input type="text" class="form-control" id="razon_social" v-model="cliente.razon_social" required>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Guadar</button>
       </form>
     </div>
   </div>

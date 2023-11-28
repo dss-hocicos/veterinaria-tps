@@ -17,7 +17,7 @@
           <li class="list-group-item"><router-link to="/Ventas" class="menu-button"><font-awesome-icon icon="shopping-cart" /> Nueva Venta</router-link></li>
           <li class="list-group-item"><router-link to="/Descuentos" class="menu-button"><font-awesome-icon icon="percent" /> Administrar Descuentos</router-link></li>
           <li class="list-group-item"><router-link to="/inventario" class="menu-button"><font-awesome-icon icon="clipboard-list" /> Inventario</router-link></li>
-          <li class="list-group-item"><router-link to="/Analisis" class="menu-button"><font-awesome-icon icon="chart-line" /> Análisis de Ventas</router-link></li>
+          <li class="list-group-item"><router-link to="/Analisis" class="menu-button"><font-awesome-icon icon="chart-line" /> Cargar DataMart</router-link></li>
           <li class="list-group-item"><router-link to="/proveedores" class="menu-button"><font-awesome-icon icon="truck-loading" /> Proveedores</router-link></li>
         </ul>
       </div>

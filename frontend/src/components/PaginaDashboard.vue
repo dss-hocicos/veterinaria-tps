@@ -25,7 +25,7 @@
   <tr v-for="cliente in clientes" :key="cliente.id_cliente">
     <td>{{ cliente.nombre }}</td>
     <td>{{ cliente.apellido }}</td>
-    <td>{{ cliente.CI }}</td>
+    <td>{{ cliente.ci }}</td>
     <td>{{ cliente.ventas }}</td>
   </tr>
 </tbody>

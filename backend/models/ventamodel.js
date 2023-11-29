@@ -26,8 +26,8 @@ export const getVentaById = (id, result) => {
 
 // Insert Sale to Database
 export const insertVenta = (data, result) => {
-    db.query("INSERT INTO venta (fecha, cantidad, total, MetodoPago, Cliente_id_cliente, vendedor_id_vendedor, descuentos_id_descuento) VALUES (?, ?, ?, ?, ?, ?, ?)", 
-    [data.fecha, data.cantidad, data.total, data.MetodoPago, data.Cliente_id_cliente, data.vendedor_id_vendedor, data.descuentos_id_descuento], 
+    db.query("INSERT INTO venta (fecha, cantidad, metodo_pago, total, factura_id_factura, vendedor_id_vendedor, producto_id_producto, descuento_producto_id_descuento_producto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", 
+    [data.fecha, data.cantidad, data.metodo_pago, data.total, data.factura_id_factura, data.vendedor_id_vendedor, data.producto_id_producto, data.descuento_producto_id_descuento_producto], 
     (err, results) => {
         if(err) {
             console.log(err);
@@ -40,8 +40,8 @@ export const insertVenta = (data, result) => {
 
 // Update Sale in Database
 export const updateVentaById = (data, id, result) => {
-    db.query("UPDATE venta SET fecha = ?, cantidad = ?, total = ?, MetodoPago = ?, productos_id_producto = ?, Cliente_id_cliente = ?, vendedor_id_vendedor = ?, factura_id_factura = ?, descuentos_id_descuento = ? WHERE id_venta = ?", 
-    [data.fecha, data.cantidad, data.total, data.MetodoPago, data.productos_id_producto, data.Cliente_id_cliente, data.vendedor_id_vendedor, data.factura_id_factura, data.descuentos_id_descuento, id], 
+    db.query("UPDATE venta SET fecha = ?, cantidad = ?, metodo_pago = ?, total = ?, factura_id_factura = ?, vendedor_id_vendedor = ?, producto_id_producto = ?, descuento_producto_id_descuento_producto = ? WHERE id_venta = ?", 
+    [data.fecha, data.cantidad, data.metodo_pago,data.total, data.factura_id_factura, data.vendedor_id_vendedor, data.producto_id_producto, data.descuento_producto_id_descuento_producto, id], 
     (err, results) => {             
         if(err) {
             console.log(err);

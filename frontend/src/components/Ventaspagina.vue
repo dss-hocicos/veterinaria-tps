@@ -67,45 +67,8 @@
 </div>
       <div class="mb-3">
         <label for="cantidadProducto" class="form-label">Cantidad:</label>
-        <input type="number" class="form-control" id="cantidadProducto" v-model="cantidadProducto" min="1">
+        <input type="number" class="form-control" id="cantidadProducto" v-model="newVenta.cantidad" min="1">
       </div>
-      <button class="btn btn-primary mb-4" @click.prevent="addItemVenta">Agregar producto</button>
-
-      <div class="mb-3"></div>
-<!-- Tabla de productos a vender -->
-<h2 class="mt-4 text-center">Productos a vender</h2>
-      <table class="table table-bordered table-hover">
-  <thead class="table-light">
-    <tr>
-      <th>ID</th>
-      <th>Nombre</th>
-      <th>Precio (Después de Descuento)</th>
-      <th>Descuento</th>
-      <th>Cantidad</th>
-      <th>Subtotal</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for="(item, index) in itemsVenta" :key="index">
-      <td>{{ item.id }}</td>
-      <td>{{ item.nombre }}</td>
-      <td>{{ item.precio }}</td>
-      <td>{{ item.descuento }}%</td>
-      <td>{{ item.cantidad }}</td>
-      <td>{{ item.subtotal }}</td>
-      <td>
-        <button class="btn btn-danger" @click="removeItemVenta(index)">Eliminar</button>
-      </td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="5">Total:</td>
-      <td>{{ totalVenta }}</td>
-    </tr>
-  </tfoot>
-</table>
       <button type="submit" class="btn btn-success">Realizar venta</button>
     </form>
   </div>
@@ -128,7 +91,7 @@
           factura_id_factura: 1,
           vendedor_id_vendedor: '',
           producto_id_producto: '',
-          descuento_producto_id_descuento_producto: '',
+          descuento_producto_id_descuento_producto: 1,
         },
         Cliente_id_cliente: '',
         productos: [],
@@ -136,7 +99,6 @@
         vendedores: [],
         descuentos: [],
         itemsVenta: [],
-        productoSeleccionado: null,
         cantidadProducto: 1,
       };
     },
@@ -181,71 +143,43 @@
       console.error(error);
     }
   },
-  addItemVenta() {
-  const producto = this.productos.find(p => p.id_producto === this.productoSeleccionado);
-  
-  // Busca el descuento para el producto seleccionado
-  const descuento = this.descuentos.find(d => d.productos_id_producto === producto.id_producto);
-
-  if (!producto) {
-    console.error(`No se encontró el producto con ID ${this.productoSeleccionado}`);
-    return;
-  }
-
-  // Aplicar descuento al producto si existe
-  let precio = producto.precio;
-  if (descuento) {
-    precio = precio * (1 - descuento.porcentaje / 100);
-  }
-
-  // Agrega el producto a la lista de items a vender
-  this.itemsVenta.push({
-    id: producto.id_producto,
-    nombre: producto.nombre,
-    precio,
-    cantidad: this.cantidadProducto,
-    subtotal: this.cantidadProducto * precio,
-    descuento: descuento ? descuento.porcentaje : 0,
-  });
-
-  // Resetea los valores seleccionados
-  this.productoSeleccionado = '';
-  this.cantidadProducto = 1;
-  window.scrollTo(0,document.body.scrollHeight);
-},
 
   removeItemVenta(index) {
     this.itemsVenta.splice(index, 1);
   },
   async submitVenta() {
   try {
-    // Calcula la cantidad total y el precio total de la venta
-    const cantidadTotal = this.itemsVenta.reduce((total, item) => total + item.cantidad, 0);
-    const total = this.itemsVenta.reduce((total, item) => total + item.subtotal, 0);
+    // Obtén el precio del producto seleccionado
+    const productoSeleccionado = this.productos.find(p => p.id_producto === this.newVenta.producto_id_producto);
+    const precio = productoSeleccionado.precio;
 
+    // Obtén el porcentaje de descuento seleccionado
+    const descuentoSeleccionado = this.descuentos.find(d => d.id_descuento === this.newVenta.descuento_producto_id_descuento_producto);
+    const porcentajeDescuento = descuentoSeleccionado.porcentaje;
+
+    // Calcula el total de la venta teniendo en cuenta la cantidad, precio y descuento
+    const total = (this.newVenta.cantidad * precio * (100 - porcentajeDescuento) / 100).toFixed(2);
+    
+    // Asigna el total al objeto newVenta
     const newVenta = {
       ...this.newVenta,
-      cantidad: cantidadTotal,
-      total,
+      total: total,
     };
 
-    
-    // Realizar la venta a través de la API
+    // Realiza la venta a través de la API
     const response = await axios.post('http://localhost:3000/ventas', newVenta);
 
     // Obtén la id de la nueva venta
     const ventaId = response.data.insertId;
-  // Asigna el valor correcto a 'Cliente_id_cliente'
-  const Cliente_id_cliente = this.newVenta.Cliente_id_cliente;
+    
+    const Cliente_id_cliente = this.newVenta.Cliente_id_cliente;
     // Para cada producto en la venta, crea un nuevo registro en la tabla venta_producto
     for (const item of this.itemsVenta) {
       const ventaProducto = {
-        venta_id: ventaId, // corregido
-        producto_id: item.id, // corregido
+        venta_id: ventaId,
+        producto_id: item.id,
         cantidad: item.cantidad,
-        descuento: item.descuento,
         subtotal: item.subtotal,
-
       };
       await this.updateInventory(item.id, item.cantidad);
       await axios.post('http://localhost:3000/venta_producto', ventaProducto);
@@ -273,11 +207,11 @@
         Ventas_id_venta: ventaId,  // Utiliza la id de la nueva venta
       },
     });
+
   } catch (error) {
     console.error(error);
   }
 },
-
 async updateInventory(productId, soldQuantity) {
     try {
       // Recuperar la información actual del producto

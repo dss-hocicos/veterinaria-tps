@@ -28,9 +28,10 @@ En la parte superior de la página, hay un menú que contiene las siguientes pes
 
 
 
-
+![HomePage](image-3.png)
 Figura 1: HomePage.
 
+![Menú de opciones](image-4.png)
 Figura 2: Menú de opciones.
 
 
@@ -39,10 +40,13 @@ Figura 2: Menú de opciones.
 En esta sección se puede registrar a un nuevo cliente, este puede contener los siguientes  datos (Figura 3):
  Nombre, Apellido, Dirección, Email, CI, Teléfono(Este campo solo admite números) y Razón  social. 
 
+![Registro de cliente](image-5.png)
 Figura 3: Registro de cliente
 ### -Registrar Productos:
   En esta sección se puede registrar un nuevo producto, este producto puede contener los siguientes datos (Figura 4): 
   Nombre, Precio, Descripción, Unidades, Proveedor.
+
+![Registro de producto](image-6.png)
 Figura 4: Registro de producto.
 
 ### -Registro de ventas:
@@ -53,12 +57,14 @@ Tabla de Productos: La siguiente sección tiene una tabla con las siguientes col
 Agregar Producto: En la parte inferior de la página, hay un botón “Agregar producto”. Al hacer clic en este botón, se añade una nueva fila a la tabla.
 Eliminar Producto: En la columna “Acciones”, hay un botón “Eliminar” para cada fila. Al hacer clic en este botón, se elimina la fila correspondiente de la tabla.
 
+![Registro de ventas](image-7.png)
 Figura 5: Registro de ventas.
 ### -Inventario:
 La página de inventario está compuesto por (Figura 6):
 Buscar Producto: En la parte superior de la página, hay una barra de búsqueda con el texto “Buscar producto…”. Puedes buscar un producto específico introduciendo su nombre en este campo.
 Tabla de Productos: Debajo de la barra de búsqueda, hay una tabla con las siguientes columnas: “Nombre”, “Código”, “Descripción”, “Precio”, “Unidades Disponibles”. Aquí se mostrarán los productos que coincidan con tu búsqueda.
 Acciones: En el lado derecho de la tabla, hay una columna para “Acciones”. Esta columna puede contener botones o enlaces para realizar acciones específicas en cada producto, como editar o eliminar.
+![Gestión de inventario](image-8.png)
 Figura 6: Gestión de inventario. 
 ### -Proveedores:
 La página de proveedores está compuesta por (Figura 7):
@@ -68,8 +74,7 @@ Eliminar Proveedor: En la columna “Acciones”, hay un botón rojo “Eliminar
 
 
 
-
-
+![Registro de proveedores](image-9.png)
 Figura 7: Registro de proveedores.
 ### -Cargar DataMart:
 Esta página funciona como botón que procede a cargar la función “Cargar DataMart”, se seleccionará al final de cada día operativo para actualizar los registros del reporte del Dashboard
@@ -113,6 +118,7 @@ El dashboard se compone de tres páginas, a la izquierda de cada cual se encuent
 - Filtro por Usuario vendedor.
 - Filtro por Empresa proveedora.
 
+![Ventas y Utilidades](image.png)
 Primera página del reporte
 
 - La primera página contiene información relacionada a las ventas y la utilidad de la empresa, en orden descendente de izquierda a derecha se tiene:
@@ -123,6 +129,7 @@ Primera página del reporte
 - Un medidor KPI del valor promedio de las ventas que se realizan en la tienda veterinaria
 - Una tarjeta que resume la información de la utilidad relativa de las ventas en el filtro.
 
+![Descuentos y Costos](image-1.png)
 Segunda página del reporte
 
 - La segunda página contiene información relacionada a las los descuentos de las ofertas y los costos que ellos incurren, en orden descendente de izquierda a derecha se tiene:
@@ -134,6 +141,7 @@ Segunda página del reporte
 - Un gráfico de dispersión del porcentaje de descuento vs. la cantidad de ventas hechas con ese descuento.
 - Un gráfico de dispersión de la duración en días del descuento vs. la utilidad relativa de las ventas hechas con ese descuento.
 
+![Productos y Proveedores](image-2.png)
 Tercera página del reporte
 
 - La tercera y última página contiene información relacionada a los productos y sus proveedores, en orden descendente de izquierda a derecha se tiene:

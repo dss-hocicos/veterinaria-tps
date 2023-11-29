@@ -40,6 +40,54 @@
     </div>
     </div>
   </div>
+
+  <div class="modal fade" id="editClienteModal" tabindex="-1" aria-labelledby="editClienteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editClienteModalLabel">Editar Cliente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="clienteNombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="clienteNombre" v-model="clienteSeleccionado.nombre" required>
+            </div>
+            <div class="mb-3">
+              <label for="clienteApellido" class="form-label">Apellido</label>
+              <input type="text" class="form-control" id="clienteApellido" v-model="clienteSeleccionado.apellido" required>
+            </div>
+            <div class="mb-3">
+              <label for="clienteDireccion" class="form-label">Dirección</label>
+              <input type="text" class="form-control" id="clienteDireccion" v-model="clienteSeleccionado.direccion" required>
+            </div>
+            <div class="mb-3">
+              <label for="clienteTelefono" class="form-label">Teléfono</label>
+              <input type="text" class="form-control" id="clienteTelefono" v-model="clienteSeleccionado.telefono" required>
+            </div>
+            <div class="mb-3">
+              <label for="clienteEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="clienteEmail" v-model="clienteSeleccionado.email" required>
+            </div>
+            <div class="mb-3">
+              <label for="clienteCi" class="form-label">CI</label>
+              <input type="text" class="form-control" id="clienteCi" v-model="clienteSeleccionado.ci" required>
+            </div>
+            <div class="mb-3">
+              <label for="clienteRazonSocial" class="form-label">Razón Social</label>
+              <input type="text" class="form-control" id="clienteRazonSocial" v-model="clienteSeleccionado.razon_social" required>
+            </div>
+            <!-- Agrega aquí otros campos del cliente si es necesario -->
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" @click="updateCliente(clienteSeleccionado)">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
   <script>
   import axios from 'axios';
@@ -48,11 +96,13 @@
   import TotalVentas from '@/components/TotalVentas.vue';
   import ProductosEnStock from '@/components/ProductosEnStock.vue';
   import Swal from 'sweetalert2';
+import { Modal } from 'bootstrap';
   export default {
     name: 'PaginaDashboard',
     data() {
       return {
-        clientes: [] // etc.
+        clientes: [], // etc.
+        clienteSeleccionado: {},
       }
     },
     methods:{
@@ -70,6 +120,42 @@
           console.error(error);
         }
       },
+      showEditModal(cliente) {
+      if (cliente) {
+        this.clienteSeleccionado = { ...cliente };
+        var myModal = new Modal(document.getElementById('editClienteModal'), { focus: true });
+        myModal.show();
+      }
+    },
+    async updateCliente(cliente) {
+      try {
+        // Asegúrate de manejar correctamente los valores nulos y de enviar al backend solo lo necesario
+        const response = await axios.put(`http://localhost:3000/clientes/${cliente.id_cliente}`, cliente);
+
+        // Actualizamos la lista
+        const index = this.clientes.findIndex(p => p.id_cliente === cliente.id_cliente);
+        this.clientes.splice(index, 1, response.data);
+
+        Swal.fire({
+          title: '¡Actualizado!',
+          text: 'La información del cliente ha sido actualizada con éxito.',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        }).then(() => {
+          // Recarga la página después de que el usuario presione "OK" en el SweetAlert.
+          location.reload();
+        });
+      } catch (error) {
+        console.error(error);
+
+        Swal.fire({
+          title: 'Error!',
+          text: 'Hubo un error al actualizar la información del cliente.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+      }
+    },
       
     },
     components: {

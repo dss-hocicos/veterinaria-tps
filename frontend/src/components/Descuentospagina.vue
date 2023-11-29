@@ -21,8 +21,8 @@
                   <td>{{ descuento.id_descuento }}</td>
                   <td>{{ descuento.descripcion }} </td>
                   <td>{{ descuento.porcentaje }}</td>
-                  <td>{{ descuento.fecha_inicio }}</td>
-                  <td>{{ descuento.fecha_fin }}</td>
+                  <td>{{ formatFecha(descuento.fecha_inicio) }}</td>
+                  <td>{{ formatFecha(descuento.fecha_fin) }}</td>
                   <td>
                       <button class="btn btn-danger" @click="deleteDescuento(descuento)">Eliminar</button>
                   </td>
@@ -141,6 +141,11 @@ export default {
               console.error(error);
           }
       },
+      formatFecha(fecha) {
+      const date = new Date(fecha);
+      const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+      return date.toLocaleDateString(undefined, options);
+    },
   },
   created() {
       this.getDiscounts();

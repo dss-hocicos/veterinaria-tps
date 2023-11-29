@@ -37,10 +37,10 @@
 
 <div class="mb-3">
 <label for="descuento" class="form-label">Descuento:</label>
-<select class="form-select" id="descuento" v-model="newVenta.descuentos_id_descuento">
+<select class="form-select" id="descuento" v-model="newVenta.descuento_producto_id_descuento_producto">
   <option value="">-- Por favor seleccione --</option>
   <option v-for="descuento in descuentos" :key="descuento.id_descuento" :value="descuento.id_descuento">
-    {{ getProductName(descuento.productos_id_producto) }} - {{ descuento.nombre }} - {{ descuento.porcentaje }}%
+    {{ descuento.descripcion }} - {{ descuento.porcentaje }}%
   </option>
 </select>
 </div>
@@ -48,17 +48,32 @@
       <!-- Método de pago -->
       <div class="mb-3">
   <label for="metodoPago" class="form-label">Método de pago:</label>
-  <select class="form-select" id="metodoPago" v-model="newVenta.MetodoPago" required>
+  <select class="form-select" id="metodoPago" v-model="newVenta.metodo_pago" required>
     <option value="">-- Por favor seleccione --</option>
     <option value="Tarjeta de crédito">Tarjeta de crédito</option>
     <option value="Débito">Débito</option>
     <option value="Efectivo">Efectivo</option>
   </select>
 </div>
+      <!-- Agregar producto a la venta -->
+<div class="mb-3">
+  <label for="producto" class="form-label">Producto:</label>
+  <select class="form-select" id="producto" v-model="newVenta.producto_id_producto" required>
+    <option value="">-- Por favor seleccione --</option>
+    <option v-for="producto in productos" :key="producto.id_producto" :value="producto.id_producto">
+      {{ producto.nombre }}
+    </option>
+  </select>
+</div>
+      <div class="mb-3">
+        <label for="cantidadProducto" class="form-label">Cantidad:</label>
+        <input type="number" class="form-control" id="cantidadProducto" v-model="cantidadProducto" min="1">
+      </div>
+      <button class="btn btn-primary mb-4" @click.prevent="addItemVenta">Agregar producto</button>
 
-
-      <!-- Tabla de productos a vender -->
-      <h2 class="mt-4 text-center">Productos a vender</h2>
+      <div class="mb-3"></div>
+<!-- Tabla de productos a vender -->
+<h2 class="mt-4 text-center">Productos a vender</h2>
       <table class="table table-bordered table-hover">
   <thead class="table-light">
     <tr>
@@ -91,25 +106,6 @@
     </tr>
   </tfoot>
 </table>
-
-      <!-- Agregar producto a la venta -->
-<div class="mb-3">
-  <label for="producto" class="form-label">Producto:</label>
-  <select class="form-select" id="producto" v-model="productoSeleccionado">
-    <option value="">-- Por favor seleccione --</option>
-    <option v-for="producto in productos" :key="producto.id_producto" :value="producto.id_producto">
-      {{ producto.nombre }}
-    </option>
-  </select>
-</div>
-      <div class="mb-3">
-        <label for="cantidadProducto" class="form-label">Cantidad:</label>
-        <input type="number" class="form-control" id="cantidadProducto" v-model="cantidadProducto" min="1">
-      </div>
-      <button class="btn btn-primary mb-4" @click.prevent="addItemVenta">Agregar producto</button>
-
-      <div class="mb-3"></div>
-
       <button type="submit" class="btn btn-success">Realizar venta</button>
     </form>
   </div>
@@ -126,14 +122,15 @@
       return {
         newVenta: {
           fecha: '',
+          cantidad: '',
           total: 0,
-          MetodoPago: '',
-          productos_id_producto: '',
-          Cliente_id_cliente: '',  // valor inicial vacío
-        vendedor_id_vendedor: '',  // valor inicial vacío
-        descuentos_id_descuento: '',  // valor inicial vacío
-       
+          metodo_pago: '',
+          factura_id_factura: 1,
+          vendedor_id_vendedor: '',
+          producto_id_producto: '',
+          descuento_producto_id_descuento_producto: '',
         },
+        Cliente_id_cliente: '',
         productos: [],
         clientes: [],
         vendedores: [],
@@ -256,7 +253,7 @@
 
     // Limpia los datos de la venta
     this.newVenta = {
-      MetodoPago: '',
+      metodo_pago: '',
       Cliente_id_cliente: '',
       vendedor_id_vendedor: '',
     };

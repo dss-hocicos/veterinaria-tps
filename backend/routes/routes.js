@@ -5,6 +5,8 @@ import { showVendedor } from "../controllers/vendedor.js";
 
 import { showProductos, showProductoById, createProducto, updateProducto, deleteProducto } from "../controllers/producto.js";
 
+import {  showCategoria, showCategoriaById } from "../controllers/categoria.js";
+
 import {showProveedores, showProveedorById, createProveedor, updateProveedor, deleteProveedor} from "../controllers/proveedor.js"
 
 import {showDescuentos,showDescuentoById,createDescuento,updateDescuento,deleteDescuento} from "../controllers/descuentos.js"
@@ -14,6 +16,7 @@ import {showVentas,showVentaById,createVenta,updateVenta,deleteVenta} from "../c
 import {showVentaProductos,createVentaProducto} from "../controllers/venta_producto.js"
 
 import {showFacturas,showFacturaById,createFactura,updateFactura,deleteFactura} from "../controllers/factura.js"
+
 
 const router = express.Router();
 
@@ -34,6 +37,10 @@ router.get('/productos/:id', showProductoById);
 router.post('/productos', createProducto);
 router.put('/productos/:id', updateProducto);
 router.delete('/productos/:id', deleteProducto);
+
+//rutas categoria
+router.get('/categorias', showCategoria);
+router.get('/categorias/:id', showCategoriaById);
 
 //rutas proveedor
 router.get('/proveedores', showProveedores);

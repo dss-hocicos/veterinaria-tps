@@ -24,11 +24,21 @@
           <input type="number" class="form-control" id="Unidades" v-model="producto.Unidades">
         </div>
         <div class="form-group">
+          <label for="precio">Costo</label>
+          <input type="number" class="form-control" id="costo" v-model="producto.costo">
+        </div>
+        <div class="form-group">
+        <label for="id_categoria">Categoria</label>
+        <select class="form-control" id="categoria_id_categoria" v-model="producto.categoria_id_categoria">
+          <option v-for="categoria in categorias" :key="categoria.id_categoria" :value="categoria.id_categoria">{{ categoria.nombre }}</option>
+        </select>
+       </div>
+       <div class="form-group">
         <label for="id_proveedor">Proveedor</label>
         <select class="form-control" id="proveedores_id_proveedor" v-model="producto.proveedores_id_proveedor">
           <option v-for="proveedor in proveedores" :key="proveedor.id_proveedor" :value="proveedor.id_proveedor">{{ proveedor.nombre }}</option>
         </select>
-      </div>
+       </div>
         <button type="submit" class="btn btn-primary">Registrar</button>
       </form>
     </div>
@@ -47,6 +57,8 @@
           precio: '',
           descripcion: '',
           Unidades: '',
+          costo:'',
+          categoria_id_categoria:'',
           proveedores_id_proveedor: '',
         },
       };
@@ -56,6 +68,14 @@
       try {
         const response = await axios.get('http://localhost:3000/proveedores');
         this.proveedores = response.data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async fetchCategorias() {
+      try {
+        const response = await axios.get('http://localhost:3000/categorias');
+        this.categorias = response.data;
       } catch (error) {
         console.error(error);
       }
@@ -71,6 +91,7 @@
       }},
       mounted() {
     this.fetchProveedores();
+    this.fetchCategorias();
   },
     components: {
       NavBar,

@@ -19,6 +19,7 @@
     <th scope="col">Apellido</th>
     <th scope="col">CI</th>
     <th scope="col">Compras realizadas</th>
+    <th>Acciones</th>
   </tr>
 </thead>
 <tbody>
@@ -27,6 +28,10 @@
     <td>{{ cliente.apellido }}</td>
     <td>{{ cliente.ci }}</td>
     <td>{{ cliente.ventas }}</td>
+    <td>
+        <button class="btn btn-primary mr-2" @click="showEditModal(cliente)">Actualizar</button>
+        <button class="btn btn-danger" @click="deleteCliente(cliente)">Eliminar</button>
+    </td>
   </tr>
 </tbody>
 
@@ -42,12 +47,30 @@
   import TotalClientes from '@/components/TotalClientes.vue';
   import TotalVentas from '@/components/TotalVentas.vue';
   import ProductosEnStock from '@/components/ProductosEnStock.vue';
+  import Swal from 'sweetalert2';
   export default {
     name: 'PaginaDashboard',
     data() {
       return {
         clientes: [] // etc.
       }
+    },
+    methods:{
+      async deleteCliente(cliente) {
+        try {
+          await axios.delete(`http://localhost:3000/clientes/${cliente.id_cliente}`);
+          this.clientes = this.clientes.filter(p => p.id_cliente !== cliente.id_cliente);
+          Swal.fire({
+            title: '¡Eliminado!',
+            text: 'El cliente ha sido eliminado con éxito.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      },
+      
     },
     components: {
       NavBar,

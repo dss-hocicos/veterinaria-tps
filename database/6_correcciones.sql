@@ -1,5 +1,7 @@
 ALTER TABLE d_producto ADD COLUMN costo decimal(6,2) NULL;
 
+update d_producto d, producto p set d.costo = p.costo where d.id_producto=p.id_producto;
+
 -- Redo trigger to fill table
 DROP TRIGGER IF EXISTS trg_insert_d_producto;
 DELIMITER //

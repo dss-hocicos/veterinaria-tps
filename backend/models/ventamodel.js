@@ -2,7 +2,7 @@ import db from "../config/database.js";
 
 // Get All Sales
 export const getVentas = (result) => {
-    db.query("SELECT * FROM ventas", (err, results) => {             
+    db.query("SELECT * FROM venta", (err, results) => {             
         if(err) {
             console.log(err);
             result(err, null);
@@ -14,7 +14,7 @@ export const getVentas = (result) => {
 
 // Get Single Sale
 export const getVentaById = (id, result) => {
-    db.query("SELECT * FROM ventas WHERE id_venta = ?", [id], (err, results) => {             
+    db.query("SELECT * FROM venta WHERE id_venta = ?", [id], (err, results) => {             
         if(err) {
             console.log(err);
             result(err, null);
@@ -26,7 +26,7 @@ export const getVentaById = (id, result) => {
 
 // Insert Sale to Database
 export const insertVenta = (data, result) => {
-    db.query("INSERT INTO ventas (fecha, cantidad, total, MetodoPago, Cliente_id_cliente, vendedor_id_vendedor, descuentos_id_descuento) VALUES (?, ?, ?, ?, ?, ?, ?)", 
+    db.query("INSERT INTO venta (fecha, cantidad, total, MetodoPago, Cliente_id_cliente, vendedor_id_vendedor, descuentos_id_descuento) VALUES (?, ?, ?, ?, ?, ?, ?)", 
     [data.fecha, data.cantidad, data.total, data.MetodoPago, data.Cliente_id_cliente, data.vendedor_id_vendedor, data.descuentos_id_descuento], 
     (err, results) => {
         if(err) {
@@ -40,7 +40,7 @@ export const insertVenta = (data, result) => {
 
 // Update Sale in Database
 export const updateVentaById = (data, id, result) => {
-    db.query("UPDATE ventas SET fecha = ?, cantidad = ?, total = ?, MetodoPago = ?, productos_id_producto = ?, Cliente_id_cliente = ?, vendedor_id_vendedor = ?, factura_id_factura = ?, descuentos_id_descuento = ? WHERE id_venta = ?", 
+    db.query("UPDATE venta SET fecha = ?, cantidad = ?, total = ?, MetodoPago = ?, productos_id_producto = ?, Cliente_id_cliente = ?, vendedor_id_vendedor = ?, factura_id_factura = ?, descuentos_id_descuento = ? WHERE id_venta = ?", 
     [data.fecha, data.cantidad, data.total, data.MetodoPago, data.productos_id_producto, data.Cliente_id_cliente, data.vendedor_id_vendedor, data.factura_id_factura, data.descuentos_id_descuento, id], 
     (err, results) => {             
         if(err) {
@@ -54,7 +54,7 @@ export const updateVentaById = (data, id, result) => {
 
 // Delete Sale from Database
 export const deleteVentaById = (id, result) => {
-    db.query("DELETE FROM ventas WHERE id_venta = ?", [id], (err, results) => {             
+    db.query("DELETE FROM venta WHERE id_venta = ?", [id], (err, results) => {             
         if(err) {
             console.log(err);
             result(err, null);

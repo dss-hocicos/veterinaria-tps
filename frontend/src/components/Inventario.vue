@@ -22,7 +22,7 @@
       <td>{{ producto.id_producto }}</td>
       <td>{{ producto.descripcion }}</td>
       <td>{{ producto.precio }}</td>
-      <td>{{ producto.Unidades }}</td>
+      <td>{{ producto.unidades }}</td>
       <td>
         <button class="btn btn-primary mr-2" @click="showEditModal(producto)">Actualizar</button>
         <button class="btn btn-danger" @click="deleteProduct(producto)">Eliminar</button>

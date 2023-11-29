@@ -2,7 +2,7 @@
   <div>
     <NavBar />
     <div class="dashboard">
-     
+      <h1 class='my-4 text-center'>Veterinaria "Hocicos"</h1>
       <div class="info-boxes">
         <TotalClientes />
         <TotalVentas />

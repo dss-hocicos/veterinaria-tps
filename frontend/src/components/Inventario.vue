@@ -57,11 +57,11 @@
           </div>
           <div>
             <label for="productUnits" class="form-label">Unidades</label>
-            <input type="number" class="form-control" id="productUnits" v-model="productoSeleccionado.Unidades">
+            <input type="number" class="form-control" id="productUnits" v-model="productoSeleccionado.unidades" required>
           </div>
           <div>
             <label for="productProvider" class="form-label">Proveedor</label>
-            <select class="form-select" id="productProvider" v-model="productoSeleccionado.proveedores_id_proveedor">
+            <select class="form-select" id="productProvider" v-model="productoSeleccionado.proveedor_id_proveedor">
               <option v-for="proveedor in proveedores" :key="proveedor.id_proveedor" :value="proveedor.id_proveedor">{{ proveedor.nombre }}</option>
             </select>
           </div>
@@ -90,14 +90,13 @@
         productos: [],
         proveedores: [],
         searchQuery: '',
-        productoEditado: {
+      productoSeleccionado: {
         nombre: '',
         precio: '',
         descripcion: '',
-        Unidades: '',
+        unidades: '',
         proveedores_id_proveedor: '',
       },
-      productoSeleccionado: {},
       };
     },
     computed: {
@@ -131,6 +130,7 @@
     }
   },
   async updateProduct(producto) {
+    console.log('Valor de unidades:', producto.unidades);
     try {
         const response = await axios.put(`http://localhost:3000/productos/${producto.id_producto}`, producto);
 

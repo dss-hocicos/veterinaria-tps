@@ -148,13 +148,13 @@
     try {
       const response = await axios.get('http://localhost:3000/productos');
       console.log(response.data);
-      this.producto = response.data;
+      this.productos = response.data;
     } catch (error) {
       console.error(error);
     }
   },
   getProductName(productoId) {
-    const producto = this.producto.find(p => p.id_producto === productoId);
+    const producto = this.productos.find(p => p.id_producto === productoId);
     return producto ? producto.nombre : 'Producto no encontrado';
   },
   async loadClientes() {
@@ -188,7 +188,7 @@
   const producto = this.productos.find(p => p.id_producto === this.productoSeleccionado);
   
   // Busca el descuento para el producto seleccionado
-  const descuento = this.descuentos.find(d => d.producto_id_producto === producto.id_producto);
+  const descuento = this.descuentos.find(d => d.productos_id_producto === producto.id_producto);
 
   if (!producto) {
     console.error(`No se encontró el producto con ID ${this.productoSeleccionado}`);
@@ -232,6 +232,7 @@
       total,
     };
 
+    
     // Realizar la venta a través de la API
     const response = await axios.post('http://localhost:3000/ventas', newVenta);
 

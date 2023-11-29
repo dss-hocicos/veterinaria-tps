@@ -42,7 +42,7 @@
                       <form @submit.prevent="addDiscount">
                         <div class="mb-3">
                 <label for="discountName" class="form-label">Nombre del Descuento</label>
-                <input type="text" class="form-control" id="discountName" v-model="newDiscount.nombre" required>
+                <input type="text" class="form-control" id="discountName" v-model="newDiscount.descripcion" required>
               </div>
                           <div class="mb-3">
                               <label for="discountPercentage" class="form-label">Porcentaje</label>
@@ -78,11 +78,10 @@ export default {
           descuentos: [],
           productos:[],
           newDiscount: {
-              nombre:'',
+              descripcion:'',
               porcentaje: '',
               fecha_inicio: '',
-              fecha_fin: '',
-              productos_id_producto: ''
+              fecha_fin: ''
           },
       };
   },

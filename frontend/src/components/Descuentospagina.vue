@@ -13,7 +13,6 @@
                   <th>Porcentaje</th>
                   <th>Fecha de inicio</th>
                   <th>Fecha de fin</th>
-                  <th>Nombre del producto</th>
                   <th>Acciones</th>
               </tr>
           </thead>
@@ -24,7 +23,6 @@
                   <td>{{ descuento.porcentaje }}</td>
                   <td>{{ descuento.fecha_inicio }}</td>
                   <td>{{ descuento.fecha_fin }}</td>
-                  <td>{{ getProductName(descuento.productos_id_producto) }}</td>
                   <td>
                       <button class="btn btn-danger" @click="deleteDescuento(descuento)">Eliminar</button>
                   </td>
@@ -58,12 +56,6 @@
                               <label for="discountEndDate" class="form-label">Fecha de fin</label>
                               <input type="date" class="form-control" id="discountEndDate" v-model="newDiscount.fecha_fin" required>
                           </div>
-                          <div class="mb-3">
-    <label for="discountProduct" class="form-label">Producto</label>
-    <select class="form-control" id="discountProduct" v-model="newDiscount.productos_id_producto" required>
-        <option v-for="producto in productos" :key="producto.id_producto" :value="producto.id_producto">{{ producto.nombre }}</option>
-    </select>
-</div>
                           <button type="submit" class="btn btn-primary">Guardar</button>
                       </form>
                   </div>

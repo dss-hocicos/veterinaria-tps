@@ -26,8 +26,8 @@ export const getDescuentoById = (id, result) => {
 
 // Insert Discount to Database
 export const insertDescuento = (data, result) => {
-    db.query("INSERT INTO descuento (nombre, porcentaje, fecha_inicio, fecha_fin, productos_id_producto) VALUES (?, ?, ?, ?, ?)", 
-    [data.nombre, data.porcentaje, data.fecha_inicio, data.fecha_fin, data.productos_id_producto], 
+    db.query("INSERT INTO descuento (descripcion, porcentaje, fecha_inicio, fecha_fin) VALUES (?, ?, ?, ?)", 
+    [data.descripcion, data.porcentaje, data.fecha_inicio, data.fecha_fin], 
     (err, results) => {
         if(err) {
             console.log(err);

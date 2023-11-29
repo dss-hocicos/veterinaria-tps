@@ -26,7 +26,7 @@ export const getFacturaById = (id, result) => {
 
 // Insert Factura to Database
 export const insertFactura = (data, result) => {
-    db.query("INSERT INTO factura (fecha, monto, codigo_control, total, ci, razon_social, Cliente_id_cliente, Ventas_id_venta) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [data.fecha, data.monto, data.codigo_control, data.total, data.ci, data.razon_social, data.Cliente_id_cliente, data.Ventas_id_venta], (err, results) => {
+    db.query("INSERT INTO factura (fecha, monto, codigo_control, cliente_id_cliente) VALUES (?, ?, ?, ?)", [data.fecha, data.monto, data.codigo_control, data.cliente_id_cliente], (err, results) => {
         if(err) {
             console.log(err);
             result(err, null);

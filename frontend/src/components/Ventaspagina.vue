@@ -172,7 +172,7 @@
     // Obtén la id de la nueva venta
     const ventaId = response.data.insertId;
     
-    const Cliente_id_cliente = this.newVenta.Cliente_id_cliente;
+    const cliente_id_cliente = this.newVenta.Cliente_id_cliente;
     // Para cada producto en la venta, crea un nuevo registro en la tabla venta_producto
     for (const item of this.itemsVenta) {
       const ventaProducto = {
@@ -203,7 +203,7 @@
         total: total,  // Utiliza la variable 'total' calculada anteriormente
         ci: this.newVenta.ci,
         razon_social: this.newVenta.razon_social,
-        Cliente_id_cliente: Cliente_id_cliente,  // Utiliza el valor asignado anteriormente
+        cliente_id_cliente: cliente_id_cliente,  // Utiliza el valor asignado anteriormente
         Ventas_id_venta: ventaId,  // Utiliza la id de la nueva venta
       },
     });

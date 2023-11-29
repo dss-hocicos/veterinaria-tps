@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container ">
     <h2 class="mb-4">Formulario de Facturación</h2>
     <form>
       <div class="mb-3">
@@ -35,7 +35,7 @@ export default {
       total: 0,
       ci: '',
       razon_social: '',
-      Cliente_id_cliente: '',
+      cliente_id_cliente: '',
       Ventas_id_venta: '',
     };
   },
@@ -47,7 +47,7 @@ export default {
       total,
       ci,
       razon_social,
-      Cliente_id_cliente,
+      cliente_id_cliente,
       Ventas_id_venta,
     } = this.$route.query;
 
@@ -58,7 +58,7 @@ export default {
     this.total = total;
     this.ci = ci;
     this.razon_social = razon_social;
-    this.Cliente_id_cliente = Cliente_id_cliente;
+    this.cliente_id_cliente = cliente_id_cliente;
     this.Ventas_id_venta = Ventas_id_venta;
   },
   methods: {
@@ -70,7 +70,7 @@ export default {
         total: this.total,
         ci: this.ci,
         razon_social: this.razon_social,
-        Cliente_id_cliente: this.Cliente_id_cliente,
+        cliente_id_cliente: this.cliente_id_cliente,
         Ventas_id_venta: this.Ventas_id_venta,
       };
 

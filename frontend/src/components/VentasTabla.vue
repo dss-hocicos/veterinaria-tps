@@ -1,3 +1,5 @@
+
+
 <template>
     <div class="container">
       <h1 class="my-4 text-center">Ventas Realizadas</h1>
@@ -17,7 +19,7 @@
               <td>{{ venta.id_venta }}</td>
               <td>{{ venta.fecha }}</td>
               <td>{{ venta.total }}</td>
-              <td>{{ getClienteName(venta.Cliente_id_cliente) }}</td>
+              <td>{{ getClienteName(venta.cliente_id_cliente) }}</td>
             </tr>
           </tbody>
         </table>
@@ -66,3 +68,9 @@ export default {
   },
 };
 </script>
+
+<style>
+  .container {
+    overflow: hidden;
+  }
+</style>

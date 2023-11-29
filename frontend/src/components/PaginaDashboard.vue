@@ -18,7 +18,7 @@
     <th scope="col">Nombre</th>
     <th scope="col">Apellido</th>
     <th scope="col">CI</th>
-    <th scope="col">Compras realizadas</th>
+    <th scope="col">Correo</th>
     <th>Acciones</th>
   </tr>
 </thead>
@@ -27,7 +27,7 @@
     <td>{{ cliente.nombre }}</td>
     <td>{{ cliente.apellido }}</td>
     <td>{{ cliente.ci }}</td>
-    <td>{{ cliente.ventas }}</td>
+    <td>{{ cliente.email }}</td>
     <td>
         <button class="btn btn-primary mr-2" @click="showEditModal(cliente)">Actualizar</button>
         <button class="btn btn-danger" @click="deleteCliente(cliente)">Eliminar</button>

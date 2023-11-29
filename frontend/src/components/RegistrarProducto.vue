@@ -29,13 +29,15 @@
         </div>
         <div class="form-group">
         <label for="id_categoria">Categoria</label>
-        <select class="form-control" id="categoria_id_categoria" v-model="producto.categoria_id_categoria">
+        <select class="form-select" id="categoria" v-model="producto.categoria_id_categoria">
+          <option value="">-- Por favor seleccione --</option>
           <option v-for="categoria in categorias" :key="categoria.id_categoria" :value="categoria.id_categoria">{{ categoria.nombre }}</option>
         </select>
        </div>
        <div class="form-group">
         <label for="id_proveedor">Proveedor</label>
-        <select class="form-control" id="proveedores_id_proveedor" v-model="producto.proveedor_id_proveedor">
+        <select class="form-select" id="proveedor" v-model="producto.proveedor_id_proveedor">
+          <option value="">-- Por favor seleccione --</option>
           <option v-for="proveedor in proveedores" :key="proveedor.id_proveedor" :value="proveedor.id_proveedor">{{ proveedor.nombre }}</option>
         </select>
        </div>

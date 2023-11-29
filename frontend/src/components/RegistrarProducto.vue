@@ -35,7 +35,7 @@
        </div>
        <div class="form-group">
         <label for="id_proveedor">Proveedor</label>
-        <select class="form-control" id="proveedores_id_proveedor" v-model="producto.proveedores_id_proveedor">
+        <select class="form-control" id="proveedores_id_proveedor" v-model="producto.proveedor_id_proveedor">
           <option v-for="proveedor in proveedores" :key="proveedor.id_proveedor" :value="proveedor.id_proveedor">{{ proveedor.nombre }}</option>
         </select>
        </div>
@@ -59,7 +59,7 @@
           Unidades: '',
           costo:'',
           categoria_id_categoria:'',
-          proveedores_id_proveedor: '',
+          proveedor_id_proveedor: '',
         },
       };
     },

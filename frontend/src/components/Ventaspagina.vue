@@ -188,7 +188,7 @@
   const producto = this.productos.find(p => p.id_producto === this.productoSeleccionado);
   
   // Busca el descuento para el producto seleccionado
-  const descuento = this.descuentos.find(d => d.productos_id_producto === producto.id_producto);
+  const descuento = this.descuentos.find(d => d.producto_id_producto === producto.id_producto);
 
   if (!producto) {
     console.error(`No se encontró el producto con ID ${this.productoSeleccionado}`);

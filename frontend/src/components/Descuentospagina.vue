@@ -46,7 +46,7 @@
               </div>
                           <div class="mb-3">
                               <label for="discountPercentage" class="form-label">Porcentaje</label>
-                              <input type="number" class="form-control" id="discountPercentage" v-model="newDiscount.porcentaje" required>
+                              <input type="float" class="form-control" id="discountPercentage" v-model="newDiscount.porcentaje" required>
                           </div>
                           <div class="mb-3">
                               <label for="discountStartDate" class="form-label">Fecha de inicio</label>

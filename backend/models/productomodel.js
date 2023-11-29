@@ -26,7 +26,7 @@ export const getProductoById = (id, result) => {
 
 // Insert Product to Database
 export const insertProducto = (data, result) => {
-    db.query("INSERT INTO producto (nombre, precio, descripcion, unidades,costo, categoria_id_categoria ,proveedor_id_proveedor) VALUES (?, ?, ?, ?, ?)", [data.nombre, data.precio, data.descripcion, data.Unidades, data.costo, data.categoria_id_categoria,data.proveedor_id_proveedor], (err, results) => {
+    db.query("INSERT INTO producto (nombre, precio, descripcion, unidades,costo, categoria_id_categoria ,proveedor_id_proveedor) VALUES (?, ?, ?, ?, ?, ?, ?)", [data.nombre, data.precio, data.descripcion, data.Unidades, data.costo, data.categoria_id_categoria,data.proveedor_id_proveedor], (err, results) => {
         if(err) {
             console.log(err);
             result(err, null);

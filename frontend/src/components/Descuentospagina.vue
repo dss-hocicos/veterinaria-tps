@@ -20,7 +20,7 @@
           <tbody>
               <tr v-for="descuento in descuentos" :key="descuento.id_descuento">
                   <td>{{ descuento.id_descuento }}</td>
-                  <td>{{ descuento.nombre }} </td>
+                  <td>{{ descuento.descripcion }} </td>
                   <td>{{ descuento.porcentaje }}</td>
                   <td>{{ descuento.fecha_inicio }}</td>
                   <td>{{ descuento.fecha_fin }}</td>
